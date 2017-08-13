@@ -1,4 +1,4 @@
-function printValue(){
+function printValue() {
 var value = document.getElementById('root').value;
  value= value.toLowerCase();
  var day = [];
@@ -9,16 +9,17 @@ var value = document.getElementById('root').value;
    }
 }
 var time=[];
-var arr1 =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
-for(var j =0; j<arr1.length; j++){
-  var indexValue = value.match(arr1[j]);
-  if(indexValue) {
-    time.push(indexValue);
-  }
+var matchTime = /\d+/g;
+var timeList = value.match(matchTime);
+if(timeList) {
+  if (timeList[0] && (0 < Number(timeList[0])) && (Number(timeList[0]) < 24)){
+   time.push(timeList[0]);
+}
 }
 
 var at =value.match(/at/g);
-if(day && time && at ){
+
+if(day && day.length && time && time.length && at && at.length ){
   document.getElementById('result').innerHTML = day[0]+ " " + at[0] + " " + time[0];
 }else{
     document.getElementById('result').innerHTML = "not match";
